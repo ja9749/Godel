@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/godel/static/css/main.073c9b0a.css",
-    "main.js": "/godel/static/js/main.f66732b1.js",
-    "static/js/787.a7ce4d2a.chunk.js": "/godel/static/js/787.a7ce4d2a.chunk.js",
-    "static/media/logo.svg": "/godel/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/godel/index.html",
-    "main.073c9b0a.css.map": "/godel/static/css/main.073c9b0a.css.map",
-    "main.f66732b1.js.map": "/godel/static/js/main.f66732b1.js.map",
-    "787.a7ce4d2a.chunk.js.map": "/godel/static/js/787.a7ce4d2a.chunk.js.map"
+    "main.css": "/Godel/static/css/main.073c9b0a.css",
+    "main.js": "/Godel/static/js/main.c9f68727.js",
+    "static/js/787.a7ce4d2a.chunk.js": "/Godel/static/js/787.a7ce4d2a.chunk.js",
+    "static/media/logo.svg": "/Godel/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Godel/index.html",
+    "main.073c9b0a.css.map": "/Godel/static/css/main.073c9b0a.css.map",
+    "main.c9f68727.js.map": "/Godel/static/js/main.c9f68727.js.map",
+    "787.a7ce4d2a.chunk.js.map": "/Godel/static/js/787.a7ce4d2a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.f66732b1.js"
+    "static/js/main.c9f68727.js"
   ]
 }
