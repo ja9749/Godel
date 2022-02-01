@@ -1,0 +1,7 @@
+.keyboard,.row {
+    display: flex;
+}
+
+.keyboard {
+    flex-flow: column;
+}

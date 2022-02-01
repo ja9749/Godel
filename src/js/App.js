@@ -1,7 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import {useCallback} from 'react';
+import {Keyboard} from './Keyboard';
 
-function App() {
+export function App() {
+    const onClickHandler = useCallback(
+        (event) => {
+            console.log(event);
+        }, []
+    );
+
     return (
         <div className = "app">
             <header className = "header">
@@ -11,11 +17,7 @@ function App() {
             <div className = "game">
                 <p>{"Gamebox"}</p>
             </div>
-            <div className = "keyboard">
-                <p>{"Keyboard"}</p>
-            </div>
+            <Keyboard onClick = {onClickHandler} />
         </div>
     );
 }
-
-export default App;
