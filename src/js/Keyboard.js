@@ -5,7 +5,7 @@ export function Keyboard(props) {
 
     return (
         <div className = {'keyboard'}>
-            <div className = {'row'}>
+            <div className = {'keyboard-row'}>
                 <Button onClick = {onClick} value = {'Q'}/>
                 <Button onClick = {onClick} value = {'W'}/>
                 <Button onClick = {onClick} value = {'E'}/>
@@ -17,7 +17,7 @@ export function Keyboard(props) {
                 <Button onClick = {onClick} value = {'O'}/>
                 <Button onClick = {onClick} value = {'P'}/>
             </div>
-            <div className = {'row'}>
+            <div className = {'keyboard-row'}>
                 <Button onClick = {onClick} value = {'A'}/>
                 <Button onClick = {onClick} value = {'S'}/>
                 <Button onClick = {onClick} value = {'D'}/>
@@ -28,7 +28,7 @@ export function Keyboard(props) {
                 <Button onClick = {onClick} value = {'K'}/>
                 <Button onClick = {onClick} value = {'L'}/>
             </div>
-            <div className = {'row'}>
+            <div className = {'keyboard-row'}>
                 <Button onClick = {onClick} value = {'Bk'}/>
                 <Button onClick = {onClick} value = {'Z'}/>
                 <Button onClick = {onClick} value = {'X'}/>
