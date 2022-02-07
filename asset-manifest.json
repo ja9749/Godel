@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Godel/static/css/main.e4d2156b.css",
-    "main.js": "/Godel/static/js/main.175647ed.js",
+    "main.css": "/Godel/static/css/main.3b274605.css",
+    "main.js": "/Godel/static/js/main.5fe68aee.js",
     "static/js/787.a7ce4d2a.chunk.js": "/Godel/static/js/787.a7ce4d2a.chunk.js",
     "index.html": "/Godel/index.html",
-    "main.e4d2156b.css.map": "/Godel/static/css/main.e4d2156b.css.map",
-    "main.175647ed.js.map": "/Godel/static/js/main.175647ed.js.map",
+    "main.3b274605.css.map": "/Godel/static/css/main.3b274605.css.map",
+    "main.5fe68aee.js.map": "/Godel/static/js/main.5fe68aee.js.map",
     "787.a7ce4d2a.chunk.js.map": "/Godel/static/js/787.a7ce4d2a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4d2156b.css",
-    "static/js/main.175647ed.js"
+    "static/css/main.3b274605.css",
+    "static/js/main.5fe68aee.js"
   ]
 }
