@@ -2,6 +2,7 @@ import {useCallback} from 'react';
 
 export function Button(props) {
     const {
+        className,
         onClick,
         value,
     } = props;
@@ -17,7 +18,7 @@ export function Button(props) {
 
     return (
         <button
-            className = "button"
+            className = {`button ${className}`}
             onClick = {onClickHandler}
         >
             {value}

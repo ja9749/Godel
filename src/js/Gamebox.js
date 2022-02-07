@@ -1,3 +1,5 @@
+import {checkWord} from "./gameLogic";
+
 export function Gamebox(props) {
     const {answer, currentGuess, previousGuesses} = props;
 
@@ -13,29 +15,7 @@ export function Gamebox(props) {
 
     for (let i = 0; i < previousGuesses.length; i++) {
         guesses[i] = previousGuesses[i];
-
-        let used = [false, false, false, false, false];
-
-        for (let j = 0; j < 5; j++) {
-            if (previousGuesses[i].charAt(j) === answer.charAt(j)) {
-                colours[i][j] = 'correct';
-                used[j] = true;
-            }
-        }
-
-        for (let j = 0; j < 5; j++) {
-            const index = answer.indexOf(previousGuesses[i].charAt(j));
-            if (index >= 0 && !used[index]) {
-                colours[i][j] = 'near';
-                used[index] = true;
-            }
-        }
-
-        for (let j = 0; j < 5; j++) {
-            if (colours[i][j] === 'blank') {
-                colours[i][j] = 'incorrect';
-            }
-        }
+        colours[i] = checkWord(previousGuesses[i], answer);
     }
 
     guesses[previousGuesses.length] = currentGuess.padEnd(5 - currentGuess.length);

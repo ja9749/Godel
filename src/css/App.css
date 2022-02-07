@@ -8,3 +8,11 @@ html,body,#root,.app {
     flex-flow: column;
     text-align: center;
 }
+
+h1 {
+    margin: 8px;
+}
+
+p {
+    margin: 8px;
+}
