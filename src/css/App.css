@@ -6,7 +6,18 @@ html,body,#root,.app {
     align-items: center;
     display: flex;
     flex-flow: column;
+}
+
+.header {
+    align-items: center;
     text-align: center;
+    display: flex;
+    max-width: 580px;
+    width: 100%;
+}
+
+.title {
+    margin: auto;
 }
 
 h1 {

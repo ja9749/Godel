@@ -38,12 +38,20 @@ export function App() {
 
     const today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
     
     const seed = mm + dd + yyyy;
 
     const answer = answers.map((entry) => entry.word)[rngIntSeed({max: answers.length, seed: seed})];
+
+    const handleTutorialOpen = useCallback(() => {
+        alert("Tutorial");
+    });
+
+    const handleSettingsOpen = useCallback(() => {
+        alert("Settings");
+    });
 
     const handleUserKeyPress = useCallback(event => {
         const {key} = event;
@@ -103,9 +111,22 @@ export function App() {
     return (
         <div className = "app">
             <header className = "header">
-                <h1>{"Gödel"}</h1>
-                <p>{"A wordle game for gamers"}</p>
-
+                <button 
+                    className = {'button-tutorial'}
+                    onClick = {handleTutorialOpen}
+                >
+                    {'?'}
+                </button>
+                <div className = {'title'}>
+                    <h1>{"Gödel"}</h1>
+                    <p>{"A wordle game for gamers"}</p>
+                </div>
+                <button 
+                    className = {'button-settings'}
+                    onClick = {handleSettingsOpen}
+                >
+                    {'!'}
+                </button>
             </header>
             <Gamebox
                 currentGuess = {currentGuess}
