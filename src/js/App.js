@@ -5,35 +5,20 @@ import {
 } from 'react';
 import {Gamebox} from './Gamebox';
 import {Keyboard} from './Keyboard';
-import {checkWord} from './gameLogic';
+import {
+    handleKeyInput,
+    rngIntSeed,
+} from './gameLogic';
+import answers from '../data/answers.json';
+import words from '../data/words.json';
 
 export function App() {
     const initialAlphabet = {
-        'A': 'blank',
-        'B': 'blank',
-        'C': 'blank',
-        'D': 'blank',
-        'E': 'blank',
-        'F': 'blank',
-        'G': 'blank',
-        'H': 'blank',
-        'I': 'blank',
-        'J': 'blank',
-        'K': 'blank',
-        'L': 'blank',
-        'M': 'blank',
-        'N': 'blank',
-        'O': 'blank',
-        'P': 'blank',
-        'Q': 'blank',
-        'R': 'blank',
-        'S': 'blank',
-        'T': 'blank',
-        'U': 'blank',
-        'V': 'blank',
-        'W': 'blank',
-        'X': 'blank',
-        'Y': 'blank',
+        'A': 'blank', 'B': 'blank', 'C': 'blank', 'D': 'blank', 'E': 'blank',
+        'F': 'blank', 'G': 'blank', 'H': 'blank', 'I': 'blank', 'J': 'blank',
+        'K': 'blank', 'L': 'blank', 'M': 'blank', 'N': 'blank', 'O': 'blank',
+        'P': 'blank', 'Q': 'blank', 'R': 'blank', 'S': 'blank', 'T': 'blank',
+        'U': 'blank', 'V': 'blank', 'W': 'blank', 'X': 'blank', 'Y': 'blank',
         'Z': 'blank',
     };
 
@@ -50,37 +35,43 @@ export function App() {
     const [currentGuess, setCurrentGuess] = useState('');
     const [alphabet, setAlphabet] = useState(initialAlphabet);
     const [results, setResults] = useState(initialResults);
-    const answer = 'LUIGI';
+
+    const today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    
+    const seed = mm + dd + yyyy;
+
+    const answer = answers.map((entry) => entry.word)[rngIntSeed({max: answers.length, seed: seed})];
 
     const handleUserKeyPress = useCallback(event => {
         const {key} = event;
-
+        let value = null;
         if (key === 'Backspace') {
-            if (currentGuess.length > 0) {
-                setCurrentGuess(currentGuess.slice(0, -1));
-            }
+            value = 'Bk';
         }
         else if (key === 'Enter') {
-            if (previousGuesses.length < 6 && currentGuess.length === 5) {
-                let newAlphabet = {...alphabet};
-                const result = checkWord(currentGuess, answer)
-
-                for (let i = 0; i < currentGuess.length; i++) {
-                    if (newAlphabet[currentGuess.charAt(i)] !== 'correct'
-                            && !(result[i] === 'incorrect' && newAlphabet[currentGuess.charAt(i)] === 'near')) {
-                        newAlphabet[currentGuess.charAt(i)] = result[i];
-                    }
-                }
-
-                setAlphabet(newAlphabet);
-                setPreviousGuesses([...previousGuesses, currentGuess]);
-                setCurrentGuess('');
-            }
+            value = 'En';
         }
-        else if (currentGuess.length < 5) {
-            if ((/[a-zA-Z]/).test(key) && key.length === 1) {
-                setCurrentGuess(currentGuess.concat(key.toUpperCase()));
-            }
+        else if ((/[a-zA-Z]/).test(key) && key.length === 1) {
+            value = key.toUpperCase();
+        }
+
+        if (value) {
+            handleKeyInput(
+                value,
+                answer,
+                currentGuess,
+                setCurrentGuess,
+                previousGuesses,
+                setPreviousGuesses,
+                alphabet,
+                setAlphabet,
+                results,
+                setResults,
+                words,
+            );
         }
     }, [alphabet, currentGuess, previousGuesses]);
     
@@ -93,32 +84,20 @@ export function App() {
 
     const onClickHandler = useCallback(
         (value) => {
-            if (value === 'Bk') {
-                if (currentGuess.length > 0) {
-                    setCurrentGuess(currentGuess.slice(0, -1));
-                }
-            }
-            else if (value === 'En' && previousGuesses.length < 6) {
-                if (currentGuess.length === 5) {
-                    let newAlphabet = {...alphabet};
-                    const result = checkWord(currentGuess, answer)
-    
-                    for (let i = 0; i < currentGuess.length; i++) {
-                        if (newAlphabet[currentGuess.charAt(i)] !== 'correct'
-                                && !(result[i] === 'incorrect' && newAlphabet[currentGuess.charAt(i)] === 'near')) {
-                            newAlphabet[currentGuess.charAt(i)] = result[i];
-                        }
-                    }
-    
-                    setAlphabet(newAlphabet);
-                    setPreviousGuesses([...previousGuesses, currentGuess]);
-                    setCurrentGuess('');
-                }
-            }
-            else if (currentGuess.length < 5) {
-                setCurrentGuess(currentGuess.concat(value));
-            }
-        }, [currentGuess, previousGuesses]
+            handleKeyInput(
+                value,
+                answer,
+                currentGuess,
+                setCurrentGuess,
+                previousGuesses,
+                setPreviousGuesses,
+                alphabet,
+                setAlphabet,
+                results,
+                setResults,
+                words,
+            );
+        }, [alphabet, currentGuess, previousGuesses]
     );
 
     return (
@@ -129,9 +108,9 @@ export function App() {
 
             </header>
             <Gamebox
-                answer = {answer}
                 currentGuess = {currentGuess}
                 previousGuesses = {previousGuesses}
+                results = {results}
             />
             <Keyboard
                 alphabet = {alphabet}
