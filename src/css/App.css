@@ -16,6 +16,10 @@ html,body,#root,.app {
     width: 100%;
 }
 
+.header button {
+    align-self: flex-start;
+}
+
 .title {
     margin: auto;
 }

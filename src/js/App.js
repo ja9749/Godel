@@ -5,6 +5,8 @@ import {
 } from 'react';
 import {Gamebox} from './Gamebox';
 import {Keyboard} from './Keyboard';
+import {Notice} from './Notice';
+import {Tutorial} from './Tutorial';
 import {
     handleKeyInput,
     rngIntSeed,
@@ -35,6 +37,9 @@ export function App() {
     const [currentGuess, setCurrentGuess] = useState('');
     const [alphabet, setAlphabet] = useState(initialAlphabet);
     const [results, setResults] = useState(initialResults);
+    const [showNotice, setShowNotice] = useState(false);
+    const [noticeContent, setNoticeContent] = useState(null);
+    const [noticeTitle, setNoticeTitle] = useState(null);
 
     const today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -46,11 +51,15 @@ export function App() {
     const answer = answers.map((entry) => entry.word)[rngIntSeed({max: answers.length, seed: seed})];
 
     const handleTutorialOpen = useCallback(() => {
-        alert("Tutorial");
+        setNoticeContent(<Tutorial/>);
+        setNoticeTitle('HOW TO PLAY');
+        setShowNotice(true);
     });
 
     const handleSettingsOpen = useCallback(() => {
-        alert("Settings");
+        setNoticeContent('Settings');
+        setNoticeTitle('SETTINGS');
+        setShowNotice(true);
     });
 
     const handleUserKeyPress = useCallback(event => {
@@ -110,6 +119,15 @@ export function App() {
 
     return (
         <div className = "app">
+            {
+                showNotice &&
+                <Notice
+                    title = {noticeTitle}
+                    setShowNotice = {setShowNotice}
+                >
+                    {noticeContent}
+                </Notice>
+            }
             <header className = "header">
                 <button 
                     className = {'button-tutorial'}

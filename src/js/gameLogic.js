@@ -73,13 +73,29 @@ export function checkWord(word, answer) {
 }
 
 export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previousGuesses, setPreviousGuesses, alphabet, setAlphabet, results, setResults, words) {
-    if (key === 'Bk') {
+    console.log(previousGuesses[previousGuesses.length - 1], answer)
+    if (previousGuesses[previousGuesses.length - 1] === answer) {
+        alert('You have won!');
+    }
+    else if (previousGuesses.length >= 6) {
+        alert('You have run out of guesses');
+    }
+    else if (key === 'Bk') {
         if (currentGuess.length > 0) {
             setCurrentGuess(currentGuess.slice(0, -1));
         }
+        else {
+            alert('No letters to delete');
+        }
     }
-    else if (key === 'En' && previousGuesses.length < 6) {
-        if (currentGuess.length === 5 && words.indexOf(currentGuess) >= 0) {
+    else if (key === 'En') {
+        if (currentGuess.length !== 5) {
+            alert('Not enough letters');
+        }
+        else if (words.indexOf(currentGuess) < 0) {
+            alert('Not a gaming reference');
+        }
+        else {
             let newAlphabet = {...alphabet};
             let newResults = [...results];
             const result = checkWord(currentGuess, answer);
