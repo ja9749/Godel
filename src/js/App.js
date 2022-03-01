@@ -136,8 +136,8 @@ export function App() {
                     {'?'}
                 </button>
                 <div className = {'title'}>
-                    <h1>{"Gödel"}</h1>
-                    <p>{"A wordle game for gamers"}</p>
+                    <h1>{"Nintordle"}</h1>
+                    <p>{"A wordle game for Nintendo fans"}</p>
                 </div>
                 <button 
                     className = {'button-settings'}

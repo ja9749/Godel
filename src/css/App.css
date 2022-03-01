@@ -10,6 +10,8 @@ html,body,#root,.app {
 
 .header {
     align-items: center;
+    background-color: red;
+    color: white;
     text-align: center;
     display: flex;
     max-width: 580px;
@@ -25,7 +27,11 @@ html,body,#root,.app {
 }
 
 h1 {
-    margin: 8px;
+    border: white solid 6px;
+    border-radius: 30px;
+    margin: auto;
+    margin-top: 1.5vh;
+    width: calc(100% - 75px);
 }
 
 p {

@@ -73,7 +73,6 @@ export function checkWord(word, answer) {
 }
 
 export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previousGuesses, setPreviousGuesses, alphabet, setAlphabet, results, setResults, words) {
-    console.log(previousGuesses[previousGuesses.length - 1], answer)
     if (previousGuesses[previousGuesses.length - 1] === answer) {
         alert('You have won!');
     }
@@ -83,9 +82,6 @@ export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previ
     else if (key === 'Bk') {
         if (currentGuess.length > 0) {
             setCurrentGuess(currentGuess.slice(0, -1));
-        }
-        else {
-            alert('No letters to delete');
         }
     }
     else if (key === 'En') {
@@ -106,6 +102,10 @@ export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previ
                         && !(result[i] === 'incorrect' && newAlphabet[currentGuess.charAt(i)] === 'near')) {
                     newAlphabet[currentGuess.charAt(i)] = result[i];
                 }
+            }
+
+            if (currentGuess === answer) {
+                alert('You have won!');
             }
 
             setResults(newResults);
