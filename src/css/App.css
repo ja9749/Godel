@@ -9,7 +9,7 @@ html,body,#root,.app {
 }
 
 .header {
-    align-items: center;
+    align-items: start;
     background-color: red;
     color: white;
     text-align: center;
@@ -18,22 +18,29 @@ html,body,#root,.app {
     width: 100%;
 }
 
-.header button {
-    align-self: flex-start;
-}
-
 .title {
     margin: auto;
 }
 
 h1 {
-    border: white solid 6px;
-    border-radius: 30px;
     margin: auto;
     margin-top: 1.5vh;
     width: calc(100% - 75px);
 }
 
+.main-title {
+    border: white solid 6px;
+    border-radius: 30px;
+}
+
+.notice-title {
+    margin-bottom: 1.5vh;
+}
+
 p {
     margin: 8px;
+}
+
+img {
+    margin: 4px;
 }

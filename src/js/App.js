@@ -14,6 +14,9 @@ import {
 import answers from '../data/answers.json';
 import words from '../data/words.json';
 
+import tutorial from '../resources/tutorial-standard.svg';
+import settings from '../resources/settings-standard.svg';
+
 export function App() {
     const initialAlphabet = {
         'A': 'blank', 'B': 'blank', 'C': 'blank', 'D': 'blank', 'E': 'blank',
@@ -129,22 +132,12 @@ export function App() {
                 </Notice>
             }
             <header className = "header">
-                <button 
-                    className = {'button-tutorial'}
-                    onClick = {handleTutorialOpen}
-                >
-                    {'?'}
-                </button>
+                <img src = {tutorial} onClick = {handleTutorialOpen}/>
                 <div className = {'title'}>
-                    <h1>{"Nintordle"}</h1>
+                    <h1 className='main-title'>{"Nintordle"}</h1>
                     <p>{"A wordle game for Nintendo fans"}</p>
                 </div>
-                <button 
-                    className = {'button-settings'}
-                    onClick = {handleSettingsOpen}
-                >
-                    {'!'}
-                </button>
+                <img src = {settings} onClick = {handleSettingsOpen}/>
             </header>
             <Gamebox
                 currentGuess = {currentGuess}
