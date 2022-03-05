@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/Godel/static/css/main.afc41eaf.css",
-    "main.js": "/Godel/static/js/main.122e9c16.js",
+    "main.css": "/Godel/static/css/main.4c9f0df2.css",
+    "main.js": "/Godel/static/js/main.c6e8b928.js",
     "static/js/787.a7ce4d2a.chunk.js": "/Godel/static/js/787.a7ce4d2a.chunk.js",
+    "static/media/pretendo-webfont.woff": "/Godel/static/media/pretendo-webfont.ed4ae337ac5af9b7a83c.woff",
+    "static/media/pretendo-webfont.woff2": "/Godel/static/media/pretendo-webfont.b516d0fbfaef89b9b66d.woff2",
     "static/media/settings-standard.svg": "/Godel/static/media/settings-standard.9db40ce5db76888396ae225f247d0758.svg",
     "index.html": "/Godel/index.html",
     "static/media/tutorial-standard.svg": "/Godel/static/media/tutorial-standard.b89cd3d16882555bd8f84d6b09a32f81.svg",
     "static/media/back-standard.svg": "/Godel/static/media/back-standard.f4036b1049fae4faee8dd6b86bd5f7cd.svg",
     "static/media/blank.svg": "/Godel/static/media/blank.9165a0d335d89df33dc980dabbeba356.svg",
-    "main.afc41eaf.css.map": "/Godel/static/css/main.afc41eaf.css.map",
-    "main.122e9c16.js.map": "/Godel/static/js/main.122e9c16.js.map",
+    "main.4c9f0df2.css.map": "/Godel/static/css/main.4c9f0df2.css.map",
+    "main.c6e8b928.js.map": "/Godel/static/js/main.c6e8b928.js.map",
     "787.a7ce4d2a.chunk.js.map": "/Godel/static/js/787.a7ce4d2a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.afc41eaf.css",
-    "static/js/main.122e9c16.js"
+    "static/css/main.4c9f0df2.css",
+    "static/js/main.c6e8b928.js"
   ]
 }
