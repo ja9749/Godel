@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'pretendoregular';
+    src: url('../resources/pretendo-font/pretendo-webfont.woff2') format('woff2'),
+         url('../resources/pretendo-font/pretendo-webfont.woff') format('woff');
+}
+
 html,body,#root,.app {
     height: 100%;
 }
@@ -26,6 +32,10 @@ h1 {
     margin: auto;
     margin-top: 1.5vh;
     width: calc(100% - 75px);
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    padding-top: 10px;
+
 }
 
 .main-title {
@@ -39,6 +49,7 @@ h1 {
 
 p {
     margin: 8px;
+    letter-spacing: 0.02em;
 }
 
 img {

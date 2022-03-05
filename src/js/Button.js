@@ -17,11 +17,11 @@ export function Button(props) {
     );
 
     return (
-        <button
+        <div
             className = {`button ${className}`}
             onClick = {onClickHandler}
         >
-            {value}
-        </button>
+            <strong>{value}</strong>
+        </div>
     );
 }

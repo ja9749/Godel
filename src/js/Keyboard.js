@@ -29,7 +29,7 @@ export function Keyboard(props) {
                 <Button className = {alphabet['L']} onClick = {onClick} value = {'L'}/>
             </div>
             <div className = {'keyboard-row'}>
-                <Button onClick = {onClick} value = {'Bk'}/>
+                <Button className = {'longer'} onClick = {onClick} value = {'Back'}/>
                 <Button className = {alphabet['Z']} onClick = {onClick} value = {'Z'}/>
                 <Button className = {alphabet['X']} onClick = {onClick} value = {'X'}/>
                 <Button className = {alphabet['C']} onClick = {onClick} value = {'C'}/>
@@ -37,7 +37,7 @@ export function Keyboard(props) {
                 <Button className = {alphabet['B']} onClick = {onClick} value = {'B'}/>
                 <Button className = {alphabet['N']} onClick = {onClick} value = {'N'}/>
                 <Button className = {alphabet['M']} onClick = {onClick} value = {'M'}/>
-                <Button onClick = {onClick} value = {'En'}/>
+                <Button className = {'longer'} onClick = {onClick} value = {'Enter'}/>
             </div>
         </div>
     );

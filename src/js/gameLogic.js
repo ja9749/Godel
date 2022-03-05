@@ -79,12 +79,12 @@ export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previ
     else if (previousGuesses.length >= 6) {
         alert('You have run out of guesses');
     }
-    else if (key === 'Bk') {
+    else if (key === 'Back') {
         if (currentGuess.length > 0) {
             setCurrentGuess(currentGuess.slice(0, -1));
         }
     }
-    else if (key === 'En') {
+    else if (key === 'Enter') {
         if (currentGuess.length !== 5) {
             alert('Not enough letters');
         }

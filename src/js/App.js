@@ -69,10 +69,10 @@ export function App() {
         const {key} = event;
         let value = null;
         if (key === 'Backspace') {
-            value = 'Bk';
+            value = 'Back';
         }
         else if (key === 'Enter') {
-            value = 'En';
+            value = 'Enter';
         }
         else if ((/[a-zA-Z]/).test(key) && key.length === 1) {
             value = key.toUpperCase();

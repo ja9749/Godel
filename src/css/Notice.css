@@ -10,6 +10,7 @@
     max-width: 580px;
     position: absolute;
     z-index: 1;
+    font-family: 'Segoe UI';
 }
 
 .notice-header-title {
