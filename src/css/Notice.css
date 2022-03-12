@@ -6,13 +6,13 @@
 .notice {
     background-color: #fff;
     flex-direction: column;
-    height: 100%;
     max-width: 580px;
     position: absolute;
     z-index: 1;
     font-family: 'Segoe UI';
 }
 
-.notice-header-title {
+.notice-title {
     margin: auto;
+    font-family: 'pretendoregular';
 }

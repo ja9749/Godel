@@ -55,13 +55,13 @@ export function App() {
 
     const handleTutorialOpen = useCallback(() => {
         setNoticeContent(<Tutorial/>);
-        setNoticeTitle('HOW TO PLAY');
+        setNoticeTitle('How to play');
         setShowNotice(true);
     });
 
     const handleSettingsOpen = useCallback(() => {
         setNoticeContent('Settings');
-        setNoticeTitle('SETTINGS');
+        setNoticeTitle('Settings');
         setShowNotice(true);
     });
 
@@ -131,23 +131,27 @@ export function App() {
                     {noticeContent}
                 </Notice>
             }
-            <header className = "header">
-                <img src = {tutorial} onClick = {handleTutorialOpen}/>
-                <div className = {'title'}>
-                    <h1 className='main-title'>{"Nintordle"}</h1>
-                    <p>{"A wordle game for Nintendo fans"}</p>
-                </div>
-                <img src = {settings} onClick = {handleSettingsOpen}/>
-            </header>
-            <Gamebox
-                currentGuess = {currentGuess}
-                previousGuesses = {previousGuesses}
-                results = {results}
-            />
-            <Keyboard
-                alphabet = {alphabet}
-                onClick = {onClickHandler}
-            />
+            {   
+                !showNotice &&
+                <>
+                    <header className = "header">
+                        <img src = {tutorial} onClick = {handleTutorialOpen}/>
+                        <div className = {'title'}>
+                            <h1 className='main-title'>{"Nintordle"}</h1>
+                        </div>
+                        <img src = {settings} onClick = {handleSettingsOpen}/>
+                    </header>
+                    <Gamebox
+                        currentGuess = {currentGuess}
+                        previousGuesses = {previousGuesses}
+                        results = {results}
+                    />
+                    <Keyboard
+                        alphabet = {alphabet}
+                        onClick = {onClickHandler}
+                    />
+                </>
+            }
         </div>
     );
 }

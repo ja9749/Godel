@@ -30,16 +30,15 @@
     justify-content: center;
     border: solid 1px black;
     margin: min(4px, 0.5vh);
-    max-height: min(60px, 7vh);
-    max-width: min(60px, 7vh);
-    height: 100%;
-    width: 100%;
+    height: min(60px, 7vh);
+    width: min(60px, 7vh);
     font-size: 5vh;
     font-family: 'pretendoregular';
 }
 
 .square p {
     padding-top: 1.75vh;
+    margin: 0;
 }
 
 .correct {
