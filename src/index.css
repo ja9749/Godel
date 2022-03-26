@@ -3,6 +3,7 @@
 @import url("./css/Gamebox.css");
 @import url("./css/Keyboard.css");
 @import url("./css/Notice.css");
+@import url("./css/TempNotice.css");
 
 body {
     margin: 0;

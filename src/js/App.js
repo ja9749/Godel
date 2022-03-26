@@ -6,6 +6,7 @@ import {
 import {Gamebox} from './Gamebox';
 import {Keyboard} from './Keyboard';
 import {Notice} from './Notice';
+import {TempNotice} from './TempNotice';
 import {Tutorial} from './Tutorial';
 import {
     handleKeyInput,
@@ -43,6 +44,9 @@ export function App() {
     const [showNotice, setShowNotice] = useState(false);
     const [noticeContent, setNoticeContent] = useState(null);
     const [noticeTitle, setNoticeTitle] = useState(null);
+    const [showTempNotice, setShowTempNotice] = useState(false);
+    const [tempNoticeContent, setTempNoticeContent] = useState(null);
+    const [showResultsAfter, setShowResultsAfter] = useState(false);
 
     const today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -51,7 +55,9 @@ export function App() {
     
     const seed = mm + dd + yyyy;
 
-    const answer = answers.map((entry) => entry.word)[rngIntSeed({max: answers.length, seed: seed})];
+    const newAnswers = answers.filter((entry) => entry.game !== "");
+
+    const answer = newAnswers[rngIntSeed({max: newAnswers.length, seed: seed})];
 
     const handleTutorialOpen = useCallback(() => {
         setNoticeContent(<Tutorial/>);
@@ -81,7 +87,7 @@ export function App() {
         if (value) {
             handleKeyInput(
                 value,
-                answer,
+                answer.word,
                 currentGuess,
                 setCurrentGuess,
                 previousGuesses,
@@ -90,10 +96,14 @@ export function App() {
                 setAlphabet,
                 results,
                 setResults,
+                setShowTempNotice,
+                setTempNoticeContent,
+                setShowResultsAfter,
+                showNotice,
                 words,
             );
         }
-    }, [alphabet, currentGuess, previousGuesses]);
+    }, [alphabet, currentGuess, previousGuesses, showNotice]);
     
     useEffect(() => {
         window.addEventListener("keydown", handleUserKeyPress);
@@ -106,7 +116,7 @@ export function App() {
         (value) => {
             handleKeyInput(
                 value,
-                answer,
+                answer.word,
                 currentGuess,
                 setCurrentGuess,
                 previousGuesses,
@@ -115,9 +125,13 @@ export function App() {
                 setAlphabet,
                 results,
                 setResults,
+                setShowTempNotice,
+                setTempNoticeContent,
+                setShowResultsAfter,
+                showNotice,
                 words,
             );
-        }, [alphabet, currentGuess, previousGuesses]
+        }, [alphabet, currentGuess, previousGuesses, showNotice]
     );
 
     return (
@@ -130,6 +144,19 @@ export function App() {
                 >
                     {noticeContent}
                 </Notice>
+            }
+            {
+                showTempNotice &&
+                <TempNotice
+                    answer = {answer}
+                    setShowTempNotice = {setShowTempNotice}
+                    setNoticeContent = {setNoticeContent}
+                    setNoticeTitle = {setNoticeTitle}
+                    setShowNotice = {setShowNotice}
+                    showResultsAfter = {showResultsAfter}
+                >
+                    {tempNoticeContent}
+                </TempNotice>
             }
             {   
                 !showNotice &&

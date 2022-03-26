@@ -20,10 +20,10 @@ export function Notice(props) {
     );
 
     return (
-        <div class="notice">
-            <header className = "header">
+        <div className = {"notice"}>
+            <header className = {"header"}>
                 <img src = {back} onClick = {onClickHandler}/>
-                <h1 className = "notice-title">{title}</h1>
+                <h1 className = {"notice-title"}>{title}</h1>
                 <img src = {blank}/>
             </header>
             {children}

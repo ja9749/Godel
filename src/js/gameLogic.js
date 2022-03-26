@@ -72,12 +72,31 @@ export function checkWord(word, answer) {
     return results;
 }
 
-export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previousGuesses, setPreviousGuesses, alphabet, setAlphabet, results, setResults, words) {
-    if (previousGuesses[previousGuesses.length - 1] === answer) {
-        alert('You have won!');
+export function handleKeyInput(
+    key,
+    answer,
+    currentGuess,
+    setCurrentGuess,
+    previousGuesses,
+    setPreviousGuesses,
+    alphabet,
+    setAlphabet,
+    results,
+    setResults,
+    setShowTempNotice,
+    setTempNoticeContent,
+    setShowResultsAfter,
+    showNotice,
+    words,
+) {
+    if (showNotice) {
+        return;
+    }
+    else if (previousGuesses[previousGuesses.length - 1] === answer) {
+        return;
     }
     else if (previousGuesses.length >= 6) {
-        alert('You have run out of guesses');
+        return;
     }
     else if (key === 'Back') {
         if (currentGuess.length > 0) {
@@ -86,10 +105,12 @@ export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previ
     }
     else if (key === 'Enter') {
         if (currentGuess.length !== 5) {
-            alert('Not enough letters');
+            setShowTempNotice(true);
+            setTempNoticeContent('Not enough letters');
         }
         else if (words.indexOf(currentGuess) < 0) {
-            alert('Not a gaming reference');
+            setShowTempNotice(true);
+            setTempNoticeContent('Not in Nintordle word list');
         }
         else {
             let newAlphabet = {...alphabet};
@@ -105,7 +126,34 @@ export function handleKeyInput(key, answer, currentGuess, setCurrentGuess, previ
             }
 
             if (currentGuess === answer) {
-                alert('You have won!');
+                setShowResultsAfter(true);
+                setShowTempNotice(true);
+
+                switch(previousGuesses.length) {
+                    case 0:
+                        setTempNoticeContent('TINGLE TINGLE KOOLOO LIMPAH');
+                        break;
+                    case 1:
+                        setTempNoticeContent('YOU ARE SUPER EFFECTIVE');
+                        break;
+                    case 2:
+                        setTempNoticeContent('OH YEAH MARIO TIME');
+                        break;
+                    case 3:
+                        setTempNoticeContent('DO A BARREL ROLL');
+                        break;
+                    case 4:
+                        setTempNoticeContent('SEE YOU NEXT MISSION');
+                        break;
+                    default:
+                        setTempNoticeContent('POYO');
+                        break;
+                }
+            }
+            else if (previousGuesses.length >= 5) {
+                setShowResultsAfter(true);
+                setShowTempNotice(true);
+                setTempNoticeContent('Sorry your Nintordle is in another castle');        
             }
 
             setResults(newResults);
