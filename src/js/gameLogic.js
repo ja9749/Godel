@@ -134,7 +134,7 @@ export function handleKeyInput(
                         setTempNoticeContent('TINGLE TINGLE KOOLOO LIMPAH');
                         break;
                     case 1:
-                        setTempNoticeContent('YOU ARE SUPER EFFECTIVE');
+                        setTempNoticeContent('SUPER EFFECTIVE');
                         break;
                     case 2:
                         setTempNoticeContent('OH YEAH MARIO TIME');

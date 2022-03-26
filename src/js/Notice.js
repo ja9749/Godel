@@ -1,7 +1,7 @@
 
 import {useCallback} from 'react';
-import back from '../resources/back-standard.svg';
-import blank from '../resources/blank.svg';
+import backSvg from '../resources/back-standard.svg';
+import blankSvg from '../resources/blank.svg';
 
 export function Notice(props) {
     const {
@@ -22,9 +22,9 @@ export function Notice(props) {
     return (
         <div className = {"notice"}>
             <header className = {"header"}>
-                <img src = {back} onClick = {onClickHandler}/>
+                <img src = {backSvg} onClick = {onClickHandler}/>
                 <h1 className = {"notice-title"}>{title}</h1>
-                <img src = {blank}/>
+                <img src = {blankSvg}/>
             </header>
             {children}
         </div>

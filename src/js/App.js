@@ -8,15 +8,19 @@ import {Keyboard} from './Keyboard';
 import {Notice} from './Notice';
 import {TempNotice} from './TempNotice';
 import {Tutorial} from './Tutorial';
+import {Results} from './Results';
 import {
     handleKeyInput,
     rngIntSeed,
 } from './gameLogic';
+import {useLocalStorage} from "./useLocalStorage";
 import answers from '../data/answers.json';
 import words from '../data/words.json';
 
-import tutorial from '../resources/tutorial-standard.svg';
-import settings from '../resources/settings-standard.svg';
+import tutorialSvg from '../resources/tutorial-standard.svg';
+import settingsSvg from '../resources/settings-standard.svg';
+import resultsSvg from '../resources/results-standard.svg';
+import blankSvg from '../resources/blank.svg';
 
 export function App() {
     const initialAlphabet = {
@@ -37,16 +41,15 @@ export function App() {
         ['blank', 'blank', 'blank', 'blank', 'blank'],
     ];
 
-    const [previousGuesses, setPreviousGuesses] = useState([]);
-    const [currentGuess, setCurrentGuess] = useState('');
-    const [alphabet, setAlphabet] = useState(initialAlphabet);
-    const [results, setResults] = useState(initialResults);
-    const [showNotice, setShowNotice] = useState(false);
-    const [noticeContent, setNoticeContent] = useState(null);
-    const [noticeTitle, setNoticeTitle] = useState(null);
-    const [showTempNotice, setShowTempNotice] = useState(false);
-    const [tempNoticeContent, setTempNoticeContent] = useState(null);
-    const [showResultsAfter, setShowResultsAfter] = useState(false);
+    const [previousGuesses, setPreviousGuesses] = useLocalStorage("previousGuesses", []);
+    const [currentGuess, setCurrentGuess] = useLocalStorage("currentGuess", '');
+    const [alphabet, setAlphabet] = useLocalStorage("alphabet", initialAlphabet);
+    const [results, setResults] = useLocalStorage("results", initialResults);
+    const [showNotice, setShowNotice] = useLocalStorage("showNotice", false);
+    const [noticeTitle, setNoticeTitle] = useLocalStorage("noticeTitle", null);
+    const [showTempNotice, setShowTempNotice] = useLocalStorage("showTempNotice", false);
+    const [tempNoticeContent, setTempNoticeContent] = useLocalStorage("tempNoticeContent", null);
+    const [showResultsAfter, setShowResultsAfter] = useLocalStorage("showResultsAfter", false);
 
     const today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -59,15 +62,42 @@ export function App() {
 
     const answer = newAnswers[rngIntSeed({max: newAnswers.length, seed: seed})];
 
+    const finished = (previousGuesses[previousGuesses.length - 1] === answer.word) || previousGuesses.length === 6;
+
+    console.log(finished);
+
+    let noticeContent = null;
+    switch(noticeTitle) {
+        case 'Results':
+            noticeContent = 
+                <Results
+                    game = {answer.game}
+                    img = {answer.img}
+                    url = {answer.url}
+                    word = {answer.word}
+                    finished = {finished}
+                />;
+            break;
+        case 'How to play':
+            noticeContent = <Tutorial/>;
+            break;
+        case 'Settings':
+            noticeContent = 'Settings';
+            break;
+    }
+
     const handleTutorialOpen = useCallback(() => {
-        setNoticeContent(<Tutorial/>);
         setNoticeTitle('How to play');
         setShowNotice(true);
     });
 
     const handleSettingsOpen = useCallback(() => {
-        setNoticeContent('Settings');
         setNoticeTitle('Settings');
+        setShowNotice(true);
+    });
+
+    const handleResultsOpen = useCallback(() => {
+        setNoticeTitle('Results');
         setShowNotice(true);
     });
 
@@ -150,7 +180,6 @@ export function App() {
                 <TempNotice
                     answer = {answer}
                     setShowTempNotice = {setShowTempNotice}
-                    setNoticeContent = {setNoticeContent}
                     setNoticeTitle = {setNoticeTitle}
                     setShowNotice = {setShowNotice}
                     showResultsAfter = {showResultsAfter}
@@ -162,11 +191,13 @@ export function App() {
                 !showNotice &&
                 <>
                     <header className = "header">
-                        <img src = {tutorial} onClick = {handleTutorialOpen}/>
+                        <img src = {tutorialSvg} onClick = {handleTutorialOpen}/>
+                        <img src = {blankSvg}/>
                         <div className = {'title'}>
                             <h1 className='main-title'>{"Nintordle"}</h1>
                         </div>
-                        <img src = {settings} onClick = {handleSettingsOpen}/>
+                        <img src = {resultsSvg} onClick = {handleResultsOpen}/>
+                        <img src = {settingsSvg} onClick = {handleSettingsOpen}/>
                     </header>
                     <Gamebox
                         currentGuess = {currentGuess}
